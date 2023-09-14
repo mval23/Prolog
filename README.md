@@ -1,117 +1,72 @@
+# Prolog Cheat Sheet
 
-# Prolog Cheatsheet
+## Variables
+- Variables in Prolog start with uppercase letters or an underscore.
+- Example: `X`, `_Variable`
 
-## Facts and Rules
-Facts define relationships or properties.
-Rules define conditions and conclusions.
+## Facts
+- Declaration of facts that establish relationships between objects.
+- Example: `father(john, mary).`
 
-### Defining Facts
-```prolog
-likes(john, pizza).
-likes(mary, ice_cream).
-```
-
-### Defining Rules
-```prolog
-friend(X, Y) :- likes(X, Z), likes(Y, Z).
-```
+## Rules
+- Definition of rules that establish conditions and conclusions.
+- Example:
+  ```prolog
+  brother(X, Y) :- father(Z, X), father(Z, Y).
+  ```
 
 ## Queries
-Queries are used to ask questions to Prolog. Enter queries in the Prolog interpreter.
-
-### Query Examples
-- Query to find if John likes pizza:
-  ```
-  ?- likes(john, pizza).
-  ```
-- Query to find who likes ice cream:
-  ```
-  ?- likes(Who, ice_cream).
-  ```
-- Query to find friends:
-  ```
-  ?- friend(john, Who).
-  ```
-
-## Variables and Unification
-Variables start with uppercase letters.
-
-### Using Underscore (_) as a Wildcard
-Used to ignore certain values.
-
-### Variable Query Example
-Query to find what Mary likes:
-```
-?- likes(mary, _).
-```
+- Perform queries to obtain answers from the knowledge base.
+- Example: `?- father(john, mary).`
 
 ## Lists
-Lists are denoted by square brackets.
-
-### Defining Lists
-```prolog
-fruits([apple, banana, orange]).
-```
-
-### List Query Example
-Query to find if apple is in the list:
-```
-?- member(apple, [apple, banana, orange]).
-```
+- Prolog has lists to handle sets of elements.
+- Example: `[1, 2, 3]`, `[X, Y, Z]`
 
 ## Recursion
-Prolog uses recursion for repetition.
+- Use recursion to solve problems iteratively.
+- Example:
+  ```prolog
+  factorial(0, 1).
+  factorial(N, Result) :- N > 0, N1 is N - 1, factorial(N1, R1), Result is N * R1.
+  ```
 
-### Recursion Example
-```prolog
-factorial(0, 1).
-factorial(N, Result) :-
-    N > 0,
-    N1 is N - 1,
-    factorial(N1, Result1),
-    Result is N * Result1.
-```
+## Cut (`!`)
+- The cut operator is used to prevent Prolog from searching for more solutions.
+- It can be used to optimize queries.
+- Example:
+  ```prolog
+  max(X, Y, X) :- X >= Y, !.
+  max(_, Y, Y).
+  ```
 
-## Cut (!)
-Cuts the backtracking, committing to the choice.
+## Backtracking
+- Prolog's default behavior includes backtracking to find alternative solutions.
 
-### Cut Example
-```prolog
-maximum(X, Y, X) :- X >= Y, !.
-maximum(_, Y, Y).
-```
+## Compatibility Lists
+- You can use compatibility lists to check for membership of an element in a list.
+- Example:
+  ```prolog
+  member(X, [X | _]).
+  member(X, [_ | T]) :- member(X, T).
+  ```
 
-## Arithmetic
-Arithmetic is done using "is" keyword.
+## Operators
+- `is` is used for arithmetic evaluations.
+- `=`, `==`, `=\=` for equality and inequality.
+- `>`, `<`, `>=`, `<=` for numeric comparisons.
+- `,` for the logical "and" operator.
+- `;` for the logical "or" operator.
 
-### Arithmetic Examples
-Query to calculate 3 + 5:
-```
-?- Sum is 3 + 5.
-```
-Query to calculate factorial using arithmetic:
-```
-?- N = 5, Fact is 1, for(I, 1, N), Fact is Fact * I.
-```
+## Cut
+- The cut operator (`!`) is used to prevent backtracking and reduce the search for solutions.
 
-## Cut in Arithmetic
-Cut can be used in arithmetic calculations.
+## Input/Output
+- `write/1` for printing.
+- `read/1` for reading user input.
 
-### Cut in Arithmetic Example
-```prolog
-fibonacci(0, 0) :- !.
-fibonacci(1, 1) :- !.
-fibonacci(N, Result) :-
-    N1 is N - 1,
-    N2 is N - 2,
-    fibonacci(N1, Result1),
-    fibonacci(N2, Result2),
-    Result is Result1 + Result2.
-```
-Query to find fibonacci number at position 7:
-```
-?- fibonacci(7, Result).
-```
-```
+## Comments
+- Single-line comments start with `%`.
+- Example: `% This is a comment.`
 
-Feel free to copy and paste the Markdown code above into your preferred Markdown editor for easy reference.
+
