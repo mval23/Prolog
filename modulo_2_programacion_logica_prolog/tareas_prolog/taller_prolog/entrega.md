@@ -41,4 +41,32 @@ invertir(N, R):-
     invertirTr(N, "", R).
 ```  
 
-3. 
+
+3. Código recursivo que quita todas las ocurrencias de un elemento en una lista.
+Ejemplo 1: quitar(2, [3,5,8,6,2,3,2,3,2], N) el resultado es N = [3,5,8,6,3,3]. \
+Ejemplo 2: quitar(g, [d,a,d,g,g,s,d,f], N) el resultado es N = [d,a,d,s,d,f] 
+
+```prolog
+% (Caso base) Lista vacia
+quitar(_, [], []):- !.
+
+% N es la cabeza
+quitar(N, [N | T], R) :-
+    quitar(N, T, R), !.
+
+% N no es la cabeza
+quitar(N, [H | T], [H | R]) :-
+    N \= H,
+    quitar(N, T, R), !.
+```
+
+4. Encuentra la representación recursiva de cola (Tail recursion) para los siguientes casos: \
+   a. fibonacci(X,Y), Y es el X-simo número de Fibonacci.
+
+```prolog
+
+```
+    
+b. producto(X,Y,Z), Z es el producto de X por Y. 
+
+5. 
