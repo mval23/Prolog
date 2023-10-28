@@ -8,8 +8,7 @@ object tarea_3 {
 
     def separarVehiculosCarga(placas: List[String]): List[String] = {
         // Contienen 3 números, espacio en blanco, seguidas de una letra.
-        val formatoVc = """\d{3}\s[A-Z]""".r
-        // se filtran las placas que cumplan con el formato de vehiculo de carga
+        val formatoVc = "\s[A-Z]\d{3}.r
         placas.filter(placa => formatoVc.pattern.matcher(placa).matches())
     }
 
